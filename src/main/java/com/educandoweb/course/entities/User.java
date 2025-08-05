@@ -1,12 +1,16 @@
 package com.educandoweb.course.entities;
 
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.util.Objects;
 
+@Entity
+@Table(name = "db_user")
 public class User implements Serializable {
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long Id;
     private String name;
     private String email;
