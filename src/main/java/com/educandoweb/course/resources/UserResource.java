@@ -17,15 +17,15 @@ public class UserResource {
     private UserService userService;
 
     @GetMapping
-    public List<User> findAll() {
-        return userService.findAll();
+    public ResponseEntity<List<User>> findAll() {
+        List<User> list = userService.findAll();
+        return ResponseEntity.ok(list);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<User> findbyId(@PathVariable Long id) {
-        return userService.findById(id)
-                .map(ResponseEntity::ok).
-                orElse(ResponseEntity.notFound().build());
+        User obj = userService.findById(id);
+        return ResponseEntity.ok(obj);
     }
 
     @PostMapping
