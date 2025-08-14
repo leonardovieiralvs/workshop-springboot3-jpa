@@ -1,8 +1,10 @@
 package com.educandoweb.course.entities;
 
+import com.educandoweb.course.enums.OrderStatus;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.Serializable;
 import java.time.Instant;
@@ -23,13 +25,30 @@ public class Order implements Serializable {
     @JoinColumn(name = "client_id")
     private User client;
 
+    @Autowired
+    private OrderStatus orderStatus;
+
     public Order() {
     }
 
-    public Order(Long id, Instant instant, User user) {
+    public Order(Long id, Instant moment, OrderStatus orderStatus, User client) {
+        super();
         this.id = id;
-        this.moment = instant;
-        this.client = user;
+        this.moment = moment;
+        this.orderStatus = orderStatus;
+        this.client = client;
+    }
+
+    public void setClient(User client) {
+        this.client = client;
+    }
+
+    public OrderStatus getOrderStatus() {
+        return orderStatus;
+    }
+
+    public void setOrderStatus(OrderStatus orderStatus) {
+        this.orderStatus = orderStatus;
     }
 
     @Override
