@@ -1,12 +1,11 @@
 package com.educandoweb.course.entities;
 
 
-import com.educandoweb.course.repositories.CategoryRepository;
 import jakarta.persistence.*;
-import org.springframework.beans.factory.annotation.Autowired;
-
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "DB_CATEGORY")
@@ -14,7 +13,9 @@ public class Category implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
+
     private String name;
+    private Set<Product> products = new HashSet<>();
 
     public Category() {
 
@@ -53,4 +54,5 @@ public class Category implements Serializable {
     public void setName(String name) {
         this.name = name;
     }
+
 }
