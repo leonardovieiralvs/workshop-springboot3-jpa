@@ -12,7 +12,7 @@ import java.util.Set;
 public class Product implements Serializable {
 
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
@@ -20,6 +20,10 @@ public class Product implements Serializable {
     private Double price;
     private String imgUrl;
 
+    @ManyToMany
+    @JoinTable(name = "TB_PRODUCT_CATEGORY",
+            joinColumns = @JoinColumn(name = "PRODUCT_ID"),
+            inverseJoinColumns = @JoinColumn(name = ("CATEGORY_ID")))
     private Set<Category> categories = new HashSet<>();
 
     public Product() {
