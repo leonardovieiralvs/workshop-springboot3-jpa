@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "TB_ORDER")
@@ -25,6 +27,9 @@ public class Order implements Serializable {
     @JoinColumn(name = "client_id")
     private User client;
 
+    @OneToMany(mappedBy = "id.order")
+    private Set<OrderItem> items = new HashSet<>();
+
     @Autowired
     private OrderStatus orderStatus;
 
@@ -37,6 +42,10 @@ public class Order implements Serializable {
         this.moment = moment;
         this.orderStatus = orderStatus;
         this.client = client;
+    }
+
+    public Set<OrderItem> getItems() {
+        return items;
     }
 
     public void setClient(User client) {
