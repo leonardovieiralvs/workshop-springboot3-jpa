@@ -22,6 +22,9 @@ public class Order implements Serializable {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'", timezone = "GMT")
     private Instant moment;
 
+    @Autowired
+    private OrderStatus orderStatus;
+
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "client_id")
@@ -29,9 +32,6 @@ public class Order implements Serializable {
 
     @OneToMany(mappedBy = "id.order")
     private Set<OrderItem> items = new HashSet<>();
-
-    @Autowired
-    private OrderStatus orderStatus;
 
     public Order() {
     }
