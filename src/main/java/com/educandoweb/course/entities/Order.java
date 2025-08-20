@@ -30,7 +30,6 @@ public class Order implements Serializable {
     @JoinColumn(name = "client_id")
     private User client;
 
-
     @OneToMany(mappedBy = "id.order")
     private Set<OrderItem> items = new HashSet<>();
 
@@ -46,6 +45,14 @@ public class Order implements Serializable {
         this.moment = moment;
         this.orderStatus = orderStatus;
         this.client = client;
+    }
+
+    private Double getTotal() {
+        double sum = 0.0;
+        for (OrderItem item : items) {
+            sum += item.getSubTotal();
+        }
+        return sum;
     }
 
     public Set<OrderItem> getItems() {

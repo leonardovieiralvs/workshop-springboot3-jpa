@@ -30,8 +30,8 @@ public class OrderItem implements Serializable {
         this.price = price;
     }
 
-    public Double subTotal() {
-        return null;
+    public Double getSubTotal() {
+        return this.quantity * this.price;
     }
 
     @Override
