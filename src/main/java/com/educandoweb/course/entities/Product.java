@@ -41,6 +41,15 @@ public class Product implements Serializable {
         this.imgUrl = imgUrl;
     }
 
+    @JsonIgnore
+    public Set<Order> getOrders() {
+        Set<Order> set = new HashSet<>();
+        for (OrderItem x : items) {
+            set.add(x.getOrder());
+        }
+        return set;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -96,14 +105,5 @@ public class Product implements Serializable {
 
     public Set<Category> getCategories() {
         return categories;
-    }
-
-    @JsonIgnore
-    public Set<Order> getOrders() {
-        Set<Order> set = new HashSet<>();
-        for (OrderItem x : items) {
-            set.add(x.getOrder());
-        }
-        return set;
     }
 }

@@ -3,6 +3,7 @@ package com.educandoweb.course.config;
 import com.educandoweb.course.entities.*;
 import com.educandoweb.course.enums.OrderStatus;
 import com.educandoweb.course.repositories.*;
+import com.educandoweb.course.resources.UserResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
@@ -18,6 +19,9 @@ public class TestConfig implements CommandLineRunner {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private UserResource userResource;
 
     @Autowired
     private OrderRepository orderRepository;
@@ -78,6 +82,4 @@ public class TestConfig implements CommandLineRunner {
         o1.setPayment(pay1);
         orderRepository.save(o1);
     }
-
-
 }
