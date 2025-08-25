@@ -38,9 +38,9 @@ public class UserService {
     }
 
     private void updateData(User entity, User user) {
-        user.setName(user.getName());
-        user.setEmail(user.getEmail());
-        user.setPhone(user.getPhone());
+        entity.setName(user.getName());
+        entity.setEmail(user.getEmail());
+        entity.setPhone(user.getPhone());
     }
 
     public void deleteById(Long id) {
